@@ -61,9 +61,7 @@ import ideaRoute from "./router/idea.router.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
-// Setup __dirname for ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
 
 // Load environment variables
 dotenv.config();
@@ -77,6 +75,9 @@ const corsOptions={
   Credential:true
 }
 app.use(cors(corsOptions));
+
+const _dirname=path.resolve();
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));

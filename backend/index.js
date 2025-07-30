@@ -58,8 +58,8 @@ import projectRoutes from "./router/project.router.js";
 import cookieParser from "cookie-parser";
 import purchaseProjectRoute from "./router/projectPurchase.route.js";
 import ideaRoute from "./router/idea.router.js";
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
+import path from "path";
+
 
 
 

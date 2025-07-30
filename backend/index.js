@@ -96,10 +96,13 @@ app.use("/api/purchase", purchaseProjectRoute);
 app.use("/api/idea", ideaRoute);
 
 // Serve frontend (Vite/React/others)
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+// app.get(/.*/, (req, res) => { res.sendFile(path.resolve(__dirname, "frontend", "index.html")); });
+
+app.use(express.static(path.join(_dirname, "/frontend/dist")))
 
 app.get(/.*/, (req, res) => { res.sendFile(path.resolve(__dirname, "frontend", "index.html")); });
-
 // Server start
 const PORT = 4000;
 app.listen(PORT, () => {

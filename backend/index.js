@@ -71,8 +71,8 @@ console.log("JWT_SECRET:", process.env.JWT_SECRET);
 const app = express();
 
 const corsOptions={
-  origin:"https://projectifyee.onrender.com/",
-  Credential:true
+  origin:"https://projectifyee.onrender.com",
+   credentials: true,
 }
 app.use(cors(corsOptions));
 
@@ -96,10 +96,6 @@ app.use("/api/project", projectRoutes);
 app.use("/api/purchase", purchaseProjectRoute);
 app.use("/api/idea", ideaRoute);
 
-// Serve frontend (Vite/React/others)
-// app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-// app.get(/.*/, (req, res) => { res.sendFile(path.resolve(__dirname, "frontend", "index.html")); });
 
 app.use(express.static(path.join(_dirname, "/frontend/dist")))
 

@@ -60,7 +60,7 @@ function AddSellerForm() {
 
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/project/projectadd",
+        "https://projectifyee.onrender.com/api/project/projectadd",
         form,
         {
           withCredentials: true,

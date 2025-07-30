@@ -21,7 +21,7 @@ const Register = () => {
   const handleSubmit = async () => {
     try {
       dispatch(registerStart());
-      const response = await axios.post("http://localhost:4000/api/auth/register", {
+      const response = await axios.post("https://projectifyee.onrender.com/api/auth/register", {
         name,
         email,
         password,

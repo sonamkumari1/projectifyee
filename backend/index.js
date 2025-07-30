@@ -72,8 +72,11 @@ console.log("JWT_SECRET:", process.env.JWT_SECRET);
 // Initialize app
 const app = express();
 
-// Middleware
-app.use(cors());
+const corsOptions={
+  origin:"https://projectifyee.onrender.com/",
+  Credential:true
+}
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));

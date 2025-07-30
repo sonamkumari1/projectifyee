@@ -46,7 +46,7 @@ function ViewProjects() {
   const handleBuyNow = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/purchase/checkout/create-checkout-session",
+        "https://projectifyee.onrender.com/api/purchase/checkout/create-checkout-session",
         { projectId: project._id },
         {
           withCredentials: true,
@@ -65,7 +65,7 @@ function ViewProjects() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/api/project/${id}`, {
+        const res = await axios.get(`https://projectifyee.onrender.com/api/project/${id}`, {
           withCredentials: true,
         });
         setProject(res.data.data);
@@ -85,7 +85,7 @@ function ViewProjects() {
       <div className="flex flex-col md:flex-row gap-12 p-6 rounded-lg shadow-lg">
         <div className="w-full md:w-1/2 mr-28">
           <img
-            src={`http://localhost:4000/uploads/${project.photo}`}
+            src={`https://projectifyee.onrender.com/uploads/${project.photo}`}
             alt={project.title}
             className="w-full h-auto rounded-lg object-cover"
           />
@@ -188,7 +188,7 @@ function ViewProjects() {
       <div className="w-full px-4 sm:px-8">
         <video className="w-full h-100 max-w-full rounded mb-6" controls>
           <source
-            src={`http://localhost:4000/uploads/${project.video}`}
+            src={`https://projectifyee.onrender.com/uploads/${project.video}`}
             type="video/mp4"
           />
         </video>

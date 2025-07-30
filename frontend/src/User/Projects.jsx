@@ -13,7 +13,7 @@ function Projects() {
     const fetchProjects = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/api/project/category/${category}`,
+          `https://projectifyee.onrender.com/api/project/category/${category}`,
           {
             withCredentials: true,
           }

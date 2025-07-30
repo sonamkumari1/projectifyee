@@ -18,7 +18,7 @@ const SellerDashboard = () => {
   useEffect(() => {
     const fetchProjectCount = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/project/${user._id}/count`,{
+        const response = await axios.get(`https://projectifyee.onrender.com/api/project/${user._id}/count`,{
           withCredentials: true
         });
         setProjectCount(response.data.count);

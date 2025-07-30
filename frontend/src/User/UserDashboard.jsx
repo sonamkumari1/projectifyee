@@ -7,7 +7,7 @@ function UserDashboard() {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/auth/profile", { withCredentials: true });
+      const res = await axios.get("https://projectifyee.onrender.com/api/auth/profile", { withCredentials: true });
       setUser(res.data.user);
       setLoading(false);
     } catch (error) {

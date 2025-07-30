@@ -13,7 +13,7 @@ const Ideas = () => {
 
   const fetchIdeas = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/idea/all", {
+      const res = await axios.get("https://projectifyee.onrender.com/api/idea/all", {
         withCredentials: true,
       });
       setIdeas(res.data.ideas);
@@ -31,14 +31,14 @@ const Ideas = () => {
     try {
       if (editMode) {
         await axios.put(
-          `http://localhost:4000/api/idea/update/${editingId}`,
+          `https://projectifyee.onrender.com/api/idea/update/${editingId}`,
           ideaData,
           {
             withCredentials: true,
           }
         );
       } else {
-        await axios.post("http://localhost:4000/api/idea/add", ideaData, {
+        await axios.post("https://projectifyee.onrender.com/api/idea/add", ideaData, {
           withCredentials: true,
         });
       }

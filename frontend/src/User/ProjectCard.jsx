@@ -17,7 +17,7 @@ function ProjectCard({ data }) {
       <a href="#">
         <img
           className="rounded-t-lg transition duration-300 object-cover w-full h-44"
-          src={`http://localhost:4000/uploads/${photo}`}
+          src={`https://projectifyee.onrender.com/uploads/${photo}`}
           alt="project"
         />
       </a>

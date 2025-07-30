@@ -12,7 +12,7 @@ function AllSellersTable() {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/project",{
+      const res = await axios.get("https://projectifyee.onrender.com/api/project",{
         withCredentials: true,
       });
       setProjects(res.data.data);
@@ -24,7 +24,7 @@ function AllSellersTable() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this Project?")) return;
     try {
-      await axios.delete(`http://localhost:4000/api/project/delete/${id}`,{
+      await axios.delete(`https://projectifyee.onrender.com/api/project/delete/${id}`,{
         withCredentials: true,
       });
       setProjects((prev) => prev.filter((item) => item._id !== id));

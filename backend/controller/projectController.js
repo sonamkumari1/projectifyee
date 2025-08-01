@@ -1,4 +1,9 @@
 import Project from "../model/project.js";
+import {
+  deleteMediaFromCloudinary,
+  deleteVideoFromCloudinary,
+  uploadMedia,
+} from "../utils/cloudinary.js";
 
 export const addProject = async (req, res) => {
   const {
@@ -15,15 +20,28 @@ export const addProject = async (req, res) => {
     database,
   } = req.body;
   try {
-    const photo = req.files?.photo?.[0]?.filename;
-    const video = req.files?.video?.[0]?.filename;
+    let projectPhoto = null;
+    let projectVideo = null;
+
+    const photoFile = req.files?.photo?.[0];
+    const videoFile = req.files?.video?.[0];
+
+    if (photoFile) {
+      const uploadedImage = await uploadMedia(photoFile.path);
+      projectPhoto = uploadedImage.secure_url;
+    }
+
+    if (videoFile) {
+      const uploadedVideo = await uploadMedia(videoFile.path, "video");
+      projectVideo = uploadedVideo.secure_url;
+    }
 
     const sell = new Project({
       title,
       price,
       discountPer,
-      photo,
-      video,
+      photo: projectPhoto,
+      video: projectVideo,
       rating,
       desc,
       domaincategory: [domaincategory.toLowerCase()],
@@ -32,7 +50,7 @@ export const addProject = async (req, res) => {
       frontend,
       backend,
       database,
-       seller: req.user._id, 
+      seller: req.user._id,
     });
     const data = await sell.save();
     res.status(201).json({
@@ -103,9 +121,42 @@ export const updateProject = async (req, res) => {
     backend,
     database,
   } = req.body;
+
   try {
-    const photo = req.files?.photo?.[0]?.filename;
-    const video = req.files?.video?.[0]?.filename;
+    const existingProject = await Project.findById(req.params.id);
+
+    if (!existingProject) {
+      return res.status(404).json({
+        success: false,
+        message: "Project not found",
+      });
+    }
+
+    const photoFile = req.files?.photo?.[0];
+    const videoFile = req.files?.video?.[0];
+
+    let projectPhoto = existingProject.photo;
+    let projectVideo = existingProject.video;
+
+    // Handle photo update
+    if (photoFile) {
+      if (existingProject.photo) {
+        const publicId = existingProject.photo.split("/").pop().split(".")[0];
+        await deleteMediaFromCloudinary(publicId);
+      }
+      const uploadedImage = await uploadMedia(photoFile.path);
+      projectPhoto = uploadedImage.secure_url;
+    }
+
+    // Handle video update
+    if (videoFile) {
+      if (existingProject.video) {
+        const publicId = existingProject.video.split("/").pop().split(".")[0];
+        await deleteVideoFromCloudinary(publicId);
+      }
+      const uploadedVideo = await uploadMedia(videoFile.path);
+      projectVideo = uploadedVideo.secure_url;
+    }
 
     const updateData = {
       title,
@@ -119,30 +170,20 @@ export const updateProject = async (req, res) => {
       frontend,
       backend,
       database,
+      photo: projectPhoto,
+      video: projectVideo,
     };
 
-    if (photo) {
-      updateData.photo = photo;
-    }
-
-    if (video) {
-      updateData.video = video;
-    }
-
-    const project = await Project.findByIdAndUpdate(req.params.id, updateData, {
-      new: true,
-    });
-    if (!project) {
-      return res.status(404).json({
-        success: false,
-        message: "project not found",
-      });
-    }
+    const updatedProject = await Project.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true }
+    );
 
     res.status(200).json({
       success: true,
-      message: "project updated successfully",
-      data: project,
+      message: "Project updated successfully",
+      data: updatedProject,
     });
   } catch (error) {
     res.status(500).json({
@@ -202,7 +243,7 @@ export const getProjectByCategory = async (req, res) => {
 };
 
 export const countProjectsBySeller = async (req, res) => {
- try {
+  try {
     const { sellerId } = req.params;
     const count = await Project.countDocuments({ seller: sellerId });
     res.json({ count });

@@ -53,30 +53,29 @@ const Header = () => {
           </Link>
         )}
 
-       {dropdownOpen && user && (
-  <div className="absolute right-0 mt-40 w-28 bg-zinc-900 border border-zinc-700 rounded-lg shadow-md py-2">
-    <button
-      className="block w-full text-left px-4 py-2 text-white hover:bg-zinc-800"
-      onClick={() => {
-        setDropdownOpen(false);
-        if (user.role === "seller") {
-          navigate("/seller/dashboard");
-        } else {
-          navigate("/userDashboard");
-        }
-      }}
-    >
-      Profile
-    </button>
-    <button
-      onClick={handleLogout}
-      className="block w-full text-left px-4 py-2 text-white hover:bg-zinc-800"
-    >
-      Logout
-    </button>
-  </div>
-)}
-
+        {dropdownOpen && user && (
+          <div className="absolute right-0 mt-40 w-28 bg-zinc-900 border border-zinc-700 rounded-lg shadow-md py-2">
+            <button
+              className="block w-full text-left px-4 py-2 text-white hover:bg-zinc-800"
+              onClick={() => {
+                setDropdownOpen(false);
+                if (user.role === "seller") {
+                  navigate("/seller/dashboard");
+                } else {
+                  navigate("/userDashboard");
+                }
+              }}
+            >
+              Profile
+            </button>
+            <button
+              onClick={handleLogout}
+              className="block w-full text-left px-4 py-2 text-white hover:bg-zinc-800"
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

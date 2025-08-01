@@ -26,7 +26,6 @@ function Projects() {
     fetchProjects();
   }, [category]);
 
-  // Filtered projects based on search term
   const filteredProjects = projects.filter(
     (project) =>
       project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -34,22 +33,22 @@ function Projects() {
   );
 
   return (
-    <div className="pb-28 pt-16 px-28">
-      <h1 className="text-5xl font-extrabold text-white mb-6 text-center leading-tight">
+    <div className="pb-20 pt-14 px-5 sm:px-10 md:px-20 lg:px-28">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 text-center leading-tight">
         {category.charAt(0).toUpperCase() + category.slice(1)} Projects
       </h1>
-      <p className="text-gray-300 mb-12 max-w-3xl mx-auto text-center leading-relaxed">
+      <p className="text-gray-300 mb-10 max-w-3xl mx-auto text-center leading-relaxed text-sm sm:text-base">
         Discover a wide range of projects available for purchase. Find the
         perfect fit for your business goals and expand your portfolio with ease
         and confidence.
       </p>
 
-      <div className="mb-20 flex gap-20 justify-center items-center">
-        <div className="relative w-[700px] text-center justify-center max-w-full">
+      <div className="mb-14 flex justify-center items-center px-4">
+        <div className="relative w-full max-w-xl">
           <input
             type="text"
             placeholder="Search projects..."
-            className="w-full px-14 text-white py-3 border border-gray-700 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-transparent placeholder-gray-400"
+            className="w-full px-12 text-white py-3 border border-gray-700 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 bg-transparent placeholder-gray-400"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -60,7 +59,7 @@ function Projects() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15 max-w-7xl ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProjects.map((project) => (
           <ProjectCard key={project._id} data={project} />
         ))}

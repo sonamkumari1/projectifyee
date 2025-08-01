@@ -2,12 +2,12 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-zinc-900 text-white py-8 px-32">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
-        <p className="text-sm">
+    <footer className="bg-zinc-900 text-white py-8 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32">
+      <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+        <p className="text-sm text-center sm:text-left">
           &copy; 2025 Your Company. All rights reserved.
         </p>
-        <div className="flex gap-4 mt-4 md:mt-0">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-center">
           <a href="#" className="text-gray-400 hover:text-white text-sm">
             Privacy Policy
           </a>

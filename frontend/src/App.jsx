@@ -13,7 +13,6 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loginSuccess } from "./redux/slices/authSlice";
 import Idea from "./Idea/Idea";
-import IdeaForm from "./Idea/IdeaForm";
 import UserDashboard from "./User/UserDashboard";
 
 function App() {
@@ -46,7 +45,7 @@ function App() {
       <Route path="/seller/dashboard" element={<SellerDashboard />} />
 
       <Route path="/idea" element={<Idea />} />
-      <Route path="/form" element={<IdeaForm />} />
+   
     </Routes>
      <ToastContainer />
     </>

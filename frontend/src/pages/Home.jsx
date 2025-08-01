@@ -7,7 +7,7 @@ function Home() {
   return (
     <div>
       <Header />
-      <div className="px-32">
+      <div className="sm:px-32 md:px-32 lg:px-32">
         <Banner />
         <ProjectDashboard />
       </div>
